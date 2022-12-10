@@ -19,3 +19,8 @@ class Forum(models.Model):
     update_date = models.DateTimeField(auto_now=True)
     publish_date = models.DateTimeField(default=now)
 
+    class Meta:
+        ordering = ('-created_date',)
+    def __str__(self):
+        return self.title
+
