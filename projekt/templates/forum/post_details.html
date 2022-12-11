@@ -10,3 +10,18 @@
 {{ object.update_date }}</br>
 {{ object.publish_date }}</br>
 
+<h2>Comments</h2>
+
+
+
+
+{% if not post.comments.all %}
+    No Comments Available
+{% else %}
+    {% for comment in post.comments.all %}
+        {{ comment.created_by }} -
+        {{ comment.created_date }}
+        </br>
+        {{ comment.body }}
+    {% endfor %}
+{% endif %}

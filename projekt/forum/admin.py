@@ -5,8 +5,10 @@ from .models import Comment
 
 # Register your models here.
 
+
 class InLineComments(admin.TabularInline):
     model = Comment
+
 @admin.register(Forum)
 class ForumAdmin(admin.ModelAdmin):
     list_display = ['created_by','title', 'created_date', 'status']
@@ -21,6 +23,6 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ['id','created_by','body','post']
     list_filter = ['created_by']
     search_fields = ['body']
-    prepopulated_fields = {'slug': ('post',)}
+
 
 

@@ -8,6 +8,8 @@ STATUS = (
     (2, 'Published'),
 )
 # Create your models here.
+
+
 class Forum(models.Model):
     title = models.CharField(max_length=55)
     header = models.CharField(max_length=55, blank=True, null=True)
@@ -21,25 +23,20 @@ class Forum(models.Model):
 
     class Meta:
         ordering = ('-created_date',)
+
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('forum:post_details', kwargs={'get_slug':self.slug})
 
+
 class Comment(models.Model):
-    post = models.ForeignKey(Forum, on_delete=models.CASCADE)
+    post = models.ForeignKey(Forum, on_delete=models.CASCADE, related_name='comments')
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(max_length=55, unique=True)
-
 
     def __str__(self):
         return self.body
-
-
-
-
-
