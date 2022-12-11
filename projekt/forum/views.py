@@ -15,7 +15,10 @@ def post_list(request):
 
 def post_detail(request, get_slug):
     post = get_object_or_404(Forum, slug=get_slug)
+    
     context = {
         'object': post
     }
     return render(request, 'forum/post_details.html', context)
+
+
